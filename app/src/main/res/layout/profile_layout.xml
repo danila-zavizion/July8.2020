@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="10dp"
+    android:background="@drawable/custom_button">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/img"
+        android:elevation="20dp">
+    </ImageView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/img"
+        android:textSize="30dp"
+        android:id="@+id/tv"
+        android:elevation="20dp"
+        >
+    </TextView>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button"
+        android:text="Github"
+        android:elevation="20dp"
+        android:background="@drawable/custom_button1"></Button>
+
+</RelativeLayout>
