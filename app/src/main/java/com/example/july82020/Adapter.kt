@@ -1,22 +1,31 @@
 package com.example.july82020
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.checkbox_layout.view.*
 import kotlinx.android.synthetic.main.filter_layout.view.*
 import kotlinx.android.synthetic.main.item_lauout.view.*
 import kotlinx.android.synthetic.main.profile_layout.view.*
 import kotlinx.android.synthetic.main.skill_layout.view.*
 
 class Adapter(
-    private val onClick: (position: Int) -> Unit
+    private val onClick: Context
 ) : RecyclerView.Adapter<Adapter.ViewHolder>() {
+
 
     private val LAYOUT_ONE = 0
     private val LAYOUT_TWO = 1
     private val LAYOUT_THREE = 2
     private val LAYOUT_FOUR = 3
+
+
+     private val   mContext = onClick
+
+
 
     override fun getItemViewType(position: Int): Int {
         var x = 0
@@ -53,12 +62,19 @@ class Adapter(
             holder.onBindSkill(k.title, k.longevity)
         } else if (items[position] is Filter) {
             val k = items[position] as Filter
-            holder.onBindTitle(k.title)
+            holder.onBindTitle(k.title, true)
+            val ib1 = holder.ib1
+            ib1.setOnClickListener(){
+                val intent = Intent(mContext, MainActivity2::class.java)
+                if (mContext != null) {
+                    mContext!!.startActivity(intent)
+                };
+            }
         }
     }
 
     inner class ViewHolder(root: View) : RecyclerView.ViewHolder(root) {
-        private val fio = root.tv; val face = root.img ; val git = root.button; val head = root.tv1; val cont = root.tv2; val tit = root.tv3; val long = root.tv4; val titl = root.tv5
+        private val fio = root.tv; val textView = root.tv6; val ib1 = root.ib1; val face = root.img ; val git = root.button; val head = root.tv1; val cont = root.tv2; val tit = root.tv3; val long = root.tv4; val titl = root.tv5
 
         init {
         }
@@ -84,10 +100,16 @@ class Adapter(
                 long.text = longevity.toString()
             } catch (e: java.lang.Exception) {}
         }
-        fun onBindTitle(title: String) {
+        fun onBindTitle(title: String, all: Boolean) {
             try {
                 titl.text = title
+                if (all==true){
+                    ib1.setImageResource(R.drawable.filter)
+                } else {}
             } catch (e: java.lang.Exception) {}
         }
+
     }
+
+    open fun onBindViewHolder(holder: FilterAdapter.ViewHolder, position: Int) {}
 }

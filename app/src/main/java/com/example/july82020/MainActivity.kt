@@ -13,13 +13,13 @@ class MainActivity : AppCompatActivity() {
         recycler.layoutManager = LinearLayoutManager(this)
 
         val itemsDelta = listOf(
-            Profile("danila", R.mipmap.ic_launcher, "hype"),
+            Profile("danila", R.drawable.ic_launcher_background, "hype"),
             Text(
                 "Title", "android:layout_height=\"match_parent\tools:context=\".MainActivity\">   <androidx.recyclerview.widget.RecyclerView\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:id=\"@+id/recycler\">\n</androidx.recyclerview.widget.RecyclerView>\n</androidx.constraintlayout.widget.ConstraintLayout>"
             ),
-            Skill("Java", 4), Filter("Experience"), Profile("danila2", R.mipmap.ic_launcher, "hype")
+            Filter("Experience"), Skill("Java", 4), Skill("SQL", 2), Skill("C++", 3)
         )
-        recycler.adapter =
-            Adapter {}.apply { items = itemsDelta }
+        val adapter = Adapter(this)
+        recycler.adapter = adapter.apply { items = itemsDelta }
     }
 }
